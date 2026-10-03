@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IELTS Academic Writing Task 2 — Analytical Inquiry: The Pied Piper</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- docx.js for standalone client-side Word document generation -->
+  <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <style>
+    /* Strict Academic Typography */
+    body {
+      font-family: "Times New Roman", Times, "Liberation Serif", serif;
+      background-color: #f4f3ef;
+      color: #1a1a1a;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-times {
+      font-family: "Times New Roman", Times, "Liberation Serif", serif;
+    }
+    /* Official Examination Paper Watermark & Borders */
+    .exam-paper {
+      background: #ffffff;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+      border: 1px solid #d4d0c8;
+    }
+    .formal-border {
+      border: 2px solid #1a273a;
+    }
+    .formal-double-bottom {
+      border-bottom: 4px double #1a273a;
+    }
+    .formal-double-top {
+      border-top: 4px double #1a273a;
+    }
+    .academic-header {
+      background: linear-gradient(180deg, #faf9f6 0%, #f1efe9 100%);
+    }
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1efe9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #8b949e;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555e69;
+    }
+    /* Timer Pulse animation */
+    @keyframes pulse-urgent {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.02); }
+    }
+    .timer-warning {
+      animation: pulse-urgent 1.2s infinite;
+      color: #b91c1c !important;
+      border-color: #b91c1c !important;
+      background-color: #fef2f2 !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-stone-900 pb-20 selection:bg-amber-100 selection:text-stone-900">
+
+  <header class="sticky top-0 z-50 bg-[#16222f] text-amber-50 shadow-md border-b-2 border-amber-600/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <!-- Title & Identification -->
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-full bg-amber-600 flex items-center justify-center font-bold text-white shadow-inner text-sm tracking-wider">
+          ETS
+        </div>
+        <div>
+          <span class="block text-xs uppercase tracking-widest text-amber-300 font-semibold">Official Examination Interface</span>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight text-white leading-tight">
+            IELTS Academic Writing Task 2 — Grade 8 Analytical Series
+          </h1>
+        </div>
+      </div>
+
+      <!-- Live 30-Minute Countdown Clock -->
+      <div class="flex items-center space-x-2 sm:space-x-4">
+        <div id="timerCard" class="bg-[#223347] border border-amber-500/40 px-3.5 py-1.5 rounded flex items-center space-x-2 shadow-inner transition-all">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="text-xs uppercase text-stone-300 font-medium">Time Remaining:</span>
+          <span id="examTimer" class="font-mono text-lg sm:text-xl font-bold tracking-wider text-amber-300">30:00</span>
+        </div>
+
+        <button id="toggleTimerBtn" onclick="toggleTimer()" class="px-2.5 py-1 text-xs font-semibold rounded bg-stone-700 hover:bg-stone-600 text-stone-200 border border-stone-500 transition">
+          Pause
+        </button>
+        <button id="resetTimerBtn" onclick="resetTimer()" class="px-2.5 py-1 text-xs font-semibold rounded bg-stone-700 hover:bg-stone-600 text-stone-200 border border-stone-500 transition">
+          Reset
+        </button>
+
+        <!-- Direct Jump to Writing Pad -->
+        <a href="#writingStation" class="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold uppercase tracking-wider rounded transition shadow">
+          <span>Candidate Sheet</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 space-y-8">
+
+    <!-- Candidate Official Header Block -->
+    <div class="exam-paper p-6 sm:p-8 rounded-lg relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-800 via-amber-600 to-blue-900"></div>
+      
+      <!-- Top Title Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center formal-double-bottom pb-6">
+        <div class="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+          <div class="w-16 h-16 rounded border-2 border-stone-800 p-1 flex items-center justify-center bg-stone-50 mb-2">
+            <!-- Cambridge Style Crest SVG -->
+            <svg class="w-12 h-12 text-stone-800" viewBox="0 0 100 100" fill="currentColor">
+              <path d="M50 5 L85 20 L85 55 C85 75 50 95 50 95 C50 95 15 75 15 55 L15 20 Z" fill="none" stroke="#1c1917" stroke-width="4"/>
+              <circle cx="50" cy="40" r="14" fill="#991b1b"/>
+              <path d="M42 40 L48 46 L58 34" stroke="#ffffff" stroke-width="3" fill="none"/>
+              <path d="M30 65 L70 65 M35 72 L65 72 M40 79 L60 79" stroke="#1c1917" stroke-width="3"/>
+            </svg>
+          </div>
+          <span class="text-[11px] font-bold tracking-widest uppercase text-stone-600">Confidential Test</span>
+          <span class="text-[10px] text-stone-500 font-mono">SERIES: ILT-G8-2026-T2</span>
+        </div>
+
+        <div class="md:col-span-3 text-center md:text-left">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-stone-300 pb-1 mb-2">
+            <span class="text-xs uppercase tracking-widest font-semibold text-stone-700">International English Language Testing System</span>
+            <span class="text-xs font-mono font-bold text-red-900 bg-red-100 px-2 py-0.5 rounded">TIME ALLOWED: 30 MINUTES</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-stone-900 font-times uppercase">
+            Writing Assessment Paper — Task 2
+          </h2>
+          <p class="text-sm italic text-stone-700 mt-1">
+            Grade 8 English Language Arts: Analytical Hypothesis, Narrative Evidence, and Moral Justification
+          </p>
+          <p class="text-xs text-stone-500 mt-0.5">
+            Adapted from Pinkfong's Musical Story: <em>The Pied Piper of Hamelin</em>
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-6 text-sm bg-stone-50 p-4 border border-stone-300 rounded">
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider font-bold text-stone-600 mb-1">Candidate Full Name:</label>
+          <input type="text" id="candidateName" value="Eleanor Vance" class="w-full bg-white border border-stone-400 px-2.5 py-1 text-stone-900 font-times focus:outline-none focus:border-stone-800 rounded-none shadow-sm" placeholder="Enter full name">
+        </div>
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider font-bold text-stone-600 mb-1">Candidate Number:</label>
+          <input type="text" id="candidateNumber" value="004892-G8" class="w-full bg-white border border-stone-400 px-2.5 py-1 text-stone-900 font-mono text-xs focus:outline-none focus:border-stone-800 rounded-none shadow-sm" placeholder="e.g. 004892">
+        </div>
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider font-bold text-stone-600 mb-1">Centre Number:</label>
+          <input type="text" id="centreNumber" value="UK884-ACAD" class="w-full bg-white border border-stone-400 px-2.5 py-1 text-stone-900 font-mono text-xs focus:outline-none focus:border-stone-800 rounded-none shadow-sm" placeholder="e.g. UK884">
+        </div>
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider font-bold text-stone-600 mb-1">Examination Date:</label>
+          <input type="text" id="examDate" value="Saturday, October 3, 2026" class="w-full bg-white border border-stone-400 px-2.5 py-1 text-stone-900 font-times text-xs focus:outline-none focus:border-stone-800 rounded-none shadow-sm" placeholder="YYYY-MM-DD">
+        </div>
+      </div>
+
+      <!-- Official Test Regulations Box -->
+      <div class="mt-5 p-3.5 bg-amber-50/70 border-l-4 border-amber-700 text-xs text-stone-800 space-y-1">
+        <div class="font-bold uppercase tracking-wider text-amber-900 flex items-center space-x-1.5">
+          <svg class="w-4 h-4 text-amber-700" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+          <span>Examiner's Notice & Mandatory Test Instructions</span>
+        </div>
+        <ul class="list-disc list-inside space-y-0.5 text-stone-700 pl-1">
+          <li><strong>Word Requirement:</strong> Exactly <strong>250 words</strong> (allowable margin ±10%: <strong>225 – 275 words</strong>). Essays outside this window will incur structural penalties.</li>
+          <li><strong>Allocated Duration:</strong> 30 Minutes under official timed conditions. Candidates may submit at any time.</li>
+          <li><strong>Academic Inquiry Format:</strong> Structure your essay strictly across <strong>Four (4) sequential steps</strong> incorporating Research Questions (RQs), Hypotheses (Hs), Evidence-Based Findings, and Moral Justification.</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="exam-paper p-6 sm:p-8 rounded-lg space-y-6">
+      <div class="flex items-center justify-between border-b-2 border-stone-800 pb-2">
+        <h3 class="text-lg font-bold font-times uppercase tracking-wider text-stone-900">
+          Section 1: Official IELTS Task 2 Essay Prompt
+        </h3>
+        <span class="px-2.5 py-0.5 text-xs font-semibold uppercase bg-stone-200 text-stone-800 rounded">Prescribed Stimulus</span>
+      </div>
+
+      <!-- Vivid Narrative Artwork: The Pied Piper of Hamelin (Custom Pure SVG) -->
+      <div class="w-full bg-[#1b2533] rounded-lg overflow-hidden border border-stone-700 shadow-md">
+        <div class="p-3 bg-[#111923] text-stone-300 text-xs font-mono flex items-center justify-between border-b border-stone-700">
+          <span>PLATE I: Historical Narrative Context — "The Weser River & The Pied Piper's Retribution"</span>
+          <span class="text-amber-400 text-[11px]">Hamelin Anno 1284</span>
+        </div>
+        <div class="relative w-full h-44 sm:h-56 overflow-hidden">
+          <svg class="w-full h-full" viewBox="0 0 900 240" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#0e1724" />
+                <stop offset="60%" stop-color="#1f2d42" />
+                <stop offset="100%" stop-color="#3c3732" />
+              </linearGradient>
+              <linearGradient id="riverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1b3952" />
+                <stop offset="100%" stop-color="#0a1824" />
+              </linearGradient>
+              <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fff8db" stop-opacity="0.9"/>
+                <stop offset="60%" stop-color="#ffdd77" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#ffdd77" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <!-- Night Sky & Full Moon -->
+            <rect width="900" height="240" fill="url(#skyGrad)"/>
+            <circle cx="760" cy="55" r="50" fill="url(#moonGlow)"/>
+            <circle cx="760" cy="55" r="28" fill="#fffbe8"/>
+
+            <!-- Distant Hamelin Gothic Architecture Silhouettes -->
+            <path d="M0 160 L40 160 L50 120 L60 160 L110 160 L125 90 L140 160 L190 160 L200 135 L210 160 L280 160 L310 70 L340 160 L420 160 L435 110 L450 160 L520 160 L540 85 L560 160 L650 160 L670 100 L690 160 L780 160 L800 60 L820 160 L900 160 L900 190 L0 190 Z" fill="#0d141e"/>
+            
+            <!-- Mountain Cave in background (Koppen Hill) -->
+            <path d="M680 160 Q760 80 840 160 Z" fill="#141c28"/>
+            <path d="M740 160 Q760 125 780 160 Z" fill="#000000"/>
+
+            <!-- River Weser with Shimmer -->
+            <rect y="175" width="900" height="65" fill="url(#riverGrad)"/>
+            <path d="M0 185 Q225 180 450 185 T900 185" stroke="#48789e" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M0 205 Q225 200 450 205 T900 205" stroke="#315c7a" stroke-width="1" fill="none" opacity="0.5"/>
+            <path d="M0 225 Q225 220 450 225 T900 225" stroke="#25475e" stroke-width="1" fill="none" opacity="0.4"/>
+
+            <!-- The Pied Piper Silhouette with Magic Pipe -->
+            <g transform="translate(180, 85)">
+              <!-- Cloak & Body -->
+              <path d="M60 90 L75 40 L60 25 L50 45 Z" fill="#d97706"/>
+              <path d="M50 45 L35 90 L70 90 Z" fill="#b45309"/>
+              <!-- Feathered Cap -->
+              <circle cx="58" cy="20" r="8" fill="#1c1917"/>
+              <path d="M50 16 Q70 12 85 4 Q75 18 60 18 Z" fill="#ef4444"/>
+              <!-- Flute / Pipe -->
+              <line x1="56" y1="23" x2="88" y2="35" stroke="#fcd34d" stroke-width="3" stroke-linecap="round"/>
+              <!-- Musical Magic Swirls -->
+              <path d="M88 35 Q120 15 150 30 T210 20" stroke="#fde68a" stroke-width="2" fill="none" stroke-dasharray="3,3" opacity="0.8"/>
+              <circle cx="150" cy="30" r="3" fill="#fde68a"/>
+              <circle cx="210" cy="20" r="2.5" fill="#fde68a"/>
+            </g>
+
+            <!-- Rats Drowning / Leaping into River -->
+            <g fill="#171717">
+              <!-- Rat 1 -->
+              <ellipse cx="360" cy="172" rx="10" ry="4"/>
+              <line x1="350" y1="172" x2="340" y2="168" stroke="#171717" stroke-width="1.5"/>
+              <!-- Rat 2 -->
+              <ellipse cx="390" cy="176" rx="9" ry="4"/>
+              <line x1="381" y1="176" x2="372" y2="171" stroke="#171717" stroke-width="1.5"/>
+              <!-- Rat 3 leaping -->
+              <ellipse cx="430" cy="180" rx="8" ry="3.5" transform="rotate(20 430 180)"/>
+              <!-- Splashes in river -->
+              <circle cx="470" cy="188" r="3" fill="#7dd3fc" opacity="0.7"/>
+              <circle cx="505" cy="190" r="2" fill="#7dd3fc" opacity="0.7"/>
+            </g>
+
+            <!-- Text Overlay Watermark in Image -->
+            <text x="30" y="40" font-family="'Times New Roman', serif" font-size="16" fill="#fef3c7" font-weight="bold" letter-spacing="1">Pinkfong Musical Narrative Case Study</text>
+            <text x="30" y="58" font-family="'Times New Roman', serif" font-size="12" fill="#d1d5db" font-style="italic">Breach of Civic Contract & Communal Catastrophe</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Formal Prompt Container -->
+      <div class="border-2 border-stone-800 bg-stone-50 p-5 sm:p-6 rounded">
+        <div class="text-xs uppercase font-bold tracking-widest text-red-950 mb-2 flex items-center space-x-1.5">
+          <span class="w-2.5 h-2.5 bg-red-800 inline-block"></span>
+          <span>Formal Examination Mandate (For The Student)</span>
+        </div>
+        <p class="text-base sm:text-lg leading-relaxed text-stone-900 font-times text-justify">
+          In the story of <em>'The Pied Piper of Hamelin,'</em> the Town Chief breaks his financial promise to the Pied Piper after the rats are drowned, leading to catastrophic consequences for the entire community.
+        </p>
+        <div class="my-3 p-3 bg-white border border-stone-300 font-times text-stone-800 italic leading-relaxed text-sm sm:text-base">
+          "Write an analytical essay (<strong>250 words</strong>) investigating why the Town Chief broke his promise, what results occurred from his decision, and what moral lesson the townspeople learned. Organize your essay using <strong>Research Questions (RQs)</strong>, <strong>Hypotheses (Hs)</strong>, <strong>Evidence-Based Findings</strong>, and a <strong>Moral Justification</strong>."
+        </div>
+        <div class="text-xs text-stone-600 font-sans flex flex-wrap gap-4 pt-1">
+          <span><strong>Assessment Tier:</strong> Grade 8 ELA Advanced</span>
+          <span><strong>Task Genre:</strong> Literary Argumentative Inquiry</span>
+          <span><strong>Target Score:</strong> Band 4.0 / Band 9.0 Standard</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="exam-paper p-6 sm:p-8 rounded-lg space-y-6">
+      <div class="flex items-center justify-between border-b-2 border-stone-800 pb-2">
+        <h3 class="text-lg font-bold font-times uppercase tracking-wider text-stone-900">
+          Section 2: Step-by-Step Structural Instructions & Word Allocation
+        </h3>
+        <span class="text-xs text-stone-500 font-mono">STRICT 4-PARAGRAPH FORMAT</span>
+      </div>
+
+      <p class="text-sm text-stone-700 leading-relaxed font-times">
+        To demonstrate academic rigor and adhere strictly to the 250-word constraint, you must organize your response into four distinct, cohesive paragraphs in accordance with the structural framework below:
+      </p>
+
+      <!-- SVG Process Flow Diagram: 4 Distinct Steps -->
+      <div class="bg-stone-50 border border-stone-300 p-4 sm:p-6 rounded-lg overflow-x-auto">
+        <div class="min-w-[680px]">
+          <div class="grid grid-cols-4 gap-3 text-center relative">
+            
+            <!-- Step 1 Card -->
+            <div class="bg-white border-2 border-[#162a45] rounded-lg p-3.5 shadow-sm relative flex flex-col justify-between">
+              <div class="bg-[#162a45] text-white py-1.5 px-2 rounded text-xs font-bold uppercase tracking-wider mb-2">
+                Step 1: Introduction
+              </div>
+              <div class="my-2">
+                <span class="font-bold text-stone-800 text-sm block">RQs & Hypotheses</span>
+                <span class="text-xs text-stone-600 block mt-1">Contextual sentence + 1 Explicit RQ + 1 Testable Hypothesis</span>
+              </div>
+              <div class="mt-3 py-1 px-3 bg-blue-50 text-blue-900 font-mono font-bold text-xs rounded border border-blue-200">
+                ~50 Words
+              </div>
+            </div>
+
+            <!-- Step 2 Card -->
+            <div class="bg-white border-2 border-[#1d568c] rounded-lg p-3.5 shadow-sm relative flex flex-col justify-between">
+              <div class="bg-[#1d568c] text-white py-1.5 px-2 rounded text-xs font-bold uppercase tracking-wider mb-2">
+                Step 2: Findings
+              </div>
+              <div class="my-2">
+                <span class="font-bold text-stone-800 text-sm block">Evidence & Results</span>
+                <span class="text-xs text-stone-600 block mt-1">Exact facts: 50,000 gold contract, rat clearance, betrayal & cave</span>
+              </div>
+              <div class="mt-3 py-1 px-3 bg-sky-50 text-sky-900 font-mono font-bold text-xs rounded border border-sky-200">
+                ~100 Words
+              </div>
+            </div>
+
+            <!-- Step 3 Card -->
+            <div class="bg-white border-2 border-[#0d766e] rounded-lg p-3.5 shadow-sm relative flex flex-col justify-between">
+              <div class="bg-[#0d766e] text-white py-1.5 px-2 rounded text-xs font-bold uppercase tracking-wider mb-2">
+                Step 3: Justification
+              </div>
+              <div class="my-2">
+                <span class="font-bold text-stone-800 text-sm block">Evaluation & Proof</span>
+                <span class="text-xs text-stone-600 block mt-1">Connect facts to RQ & H; evaluate false justification vs catastrophe</span>
+              </div>
+              <div class="mt-3 py-1 px-3 bg-teal-50 text-teal-900 font-mono font-bold text-xs rounded border border-teal-200">
+                ~70 Words
+              </div>
+            </div>
+
+            <!-- Step 4 Card -->
+            <div class="bg-white border-2 border-[#b45309] rounded-lg p-3.5 shadow-sm relative flex flex-col justify-between">
+              <div class="bg-[#b45309] text-white py-1.5 px-2 rounded text-xs font-bold uppercase tracking-wider mb-2">
+                Step 4: Conclusion
+              </div>
+              <div class="my-2">
+                <span class="font-bold text-stone-800 text-sm block">Moral & Takeaway</span>
+                <span class="text-xs text-stone-600 block mt-1">Communal synthesis on civic honor, financial greed and trust</span>
+              </div>
+              <div class="mt-3 py-1 px-3 bg-amber-50 text-amber-900 font-mono font-bold text-xs rounded border border-amber-200">
+                ~30 Words
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm border-collapse formal-border">
+          <thead>
+            <tr class="bg-stone-800 text-white font-times uppercase text-xs">
+              <th class="p-3 border border-stone-700">Paragraph Section</th>
+              <th class="p-3 border border-stone-700">Required Academic Components</th>
+              <th class="p-3 border border-stone-700 text-center">Word Allocation</th>
+              <th class="p-3 border border-stone-700">Core Focus & Function</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-300 font-times">
+            <tr class="hover:bg-stone-50">
+              <td class="p-3 font-bold text-stone-900 border border-stone-300">1. Introduction</td>
+              <td class="p-3 border border-stone-300">Research Questions (RQs) & Hypotheses (Hs)</td>
+              <td class="p-3 border border-stone-300 text-center font-mono font-bold text-stone-800">~50 Words</td>
+              <td class="p-3 border border-stone-300 text-stone-700">Introduce context; formulate exactly 1 RQ and 1 testable predictive Hypothesis.</td>
+            </tr>
+            <tr class="hover:bg-stone-50 bg-stone-50/50">
+              <td class="p-3 font-bold text-stone-900 border border-stone-300">2. Findings</td>
+              <td class="p-3 border border-stone-300">Evidence-Based Story Results</td>
+              <td class="p-3 border border-stone-300 text-center font-mono font-bold text-stone-800">~100 Words</td>
+              <td class="p-3 border border-stone-300 text-stone-700">Detail concrete story facts (contract sum, rat clearance, Chief's rationalization, retaliation).</td>
+            </tr>
+            <tr class="hover:bg-stone-50">
+              <td class="p-3 font-bold text-stone-900 border border-stone-300">3. Justification</td>
+              <td class="p-3 border border-stone-300">Evaluation & Empirical Proof</td>
+              <td class="p-3 border border-stone-300 text-center font-mono font-bold text-stone-800">~70 Words</td>
+              <td class="p-3 border border-stone-300 text-stone-700">Connect evidence back to RQ & H; expose fallacy in Chief's defense; demonstrate cause & effect.</td>
+            </tr>
+            <tr class="hover:bg-stone-50 bg-stone-50/50">
+              <td class="p-3 font-bold text-stone-900 border border-stone-300">4. Conclusion</td>
+              <td class="p-3 border border-stone-300">Summary & Moral Learning</td>
+              <td class="p-3 border border-stone-300 text-center font-mono font-bold text-stone-800">~30 Words</td>
+              <td class="p-3 border border-stone-300 text-stone-700">State final philosophical verdict on civic integrity and communal responsibility.</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="bg-stone-100 font-bold font-times text-stone-900">
+              <td colspan="2" class="p-2.5 border border-stone-300 text-right uppercase tracking-wider text-xs">Total Target Word Count:</td>
+              <td class="p-2.5 border border-stone-300 text-center font-mono text-red-900">250 Words (±10%)</td>
+              <td class="p-2.5 border border-stone-300 text-xs italic text-stone-600">Strict adherence enforced in examination rubric.</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Guiding Templates & Formula Callout Box -->
+      <div class="bg-white border-2 border-stone-700 p-4 rounded text-xs space-y-2">
+        <span class="font-bold uppercase tracking-wider text-stone-900 block border-b border-stone-300 pb-1">
+          Guiding Template: Step 1 RQ & Hypothesis Formulas
+        </span>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-stone-800 font-times pt-1">
+          <div class="p-2.5 bg-stone-50 rounded border border-stone-200">
+            <span class="font-bold text-blue-900 block text-xs">Research Question (RQ) Formula:</span>
+            <p class="italic mt-1 leading-relaxed">
+              "This essay investigates: How did the Town Chief's refusal to honor his financial contract impact the safety and security of Hamelin?"
+            </p>
+          </div>
+          <div class="p-2.5 bg-stone-50 rounded border border-stone-200">
+            <span class="font-bold text-amber-900 block text-xs">Hypothesis (H) Formula:</span>
+            <p class="italic mt-1 leading-relaxed">
+              "It is hypothesized that the Chief's dishonesty directly caused the town to lose its children, proving that breaking promises destroys communal safety."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="exam-paper p-6 sm:p-8 rounded-lg space-y-6">
+      <div class="flex items-center justify-between border-b-2 border-stone-800 pb-2">
+        <h3 class="text-lg font-bold font-times uppercase tracking-wider text-stone-900">
+          Section 3: Analytical Logic Map & Inquiry Strategy
+        </h3>
+        <span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded">Analytical Framework</span>
+      </div>
+
+      <!-- Logic Map SVG Flowchart -->
+      <div class="bg-[#fcfbf9] border border-stone-300 p-4 sm:p-5 rounded-lg">
+        <span class="text-xs font-bold uppercase tracking-wider text-stone-600 block mb-3 text-center">
+          Analytical Reasoning Chain: From Empirical Narrative to Ethical Rule
+        </span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+          
+          <!-- Column 1: Story Evidence -->
+          <div class="border-2 border-emerald-700 bg-white p-4 rounded-lg shadow-sm">
+            <div class="text-xs font-bold uppercase tracking-wider text-emerald-800 pb-1 mb-2 border-b border-emerald-200 text-center">
+              1. Story Evidence
+            </div>
+            <ul class="text-xs space-y-1.5 text-stone-700 font-times list-disc list-inside">
+              <li>Swarm of rats invading Hamelin homes and granaries</li>
+              <li>Chief offers 50,000 gold contract</li>
+              <li>Piper drowns rats in River Weser</li>
+              <li>Chief refuses payment: claims water & pipe did labor</li>
+              <li>Piper charms all children into mountain cave</li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Research & Hypothesis -->
+          <div class="border-2 border-blue-700 bg-white p-4 rounded-lg shadow-sm">
+            <div class="text-xs font-bold uppercase tracking-wider text-blue-800 pb-1 mb-2 border-b border-blue-200 text-center">
+              2. Research & Hypothesis
+            </div>
+            <ul class="text-xs space-y-1.5 text-stone-700 font-times list-disc list-inside">
+              <li><strong>RQ:</strong> Why did the Chief cheat the Piper & what resulted?</li>
+              <li><strong>H:</strong> Dishonesty and greed destroy civic stability</li>
+              <li>Empirical comparison of breach vs catastrophic consequence</li>
+              <li>Analysis of fraudulent counterarguments</li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Moral Justification -->
+          <div class="border-2 border-red-800 bg-white p-4 rounded-lg shadow-sm">
+            <div class="text-xs font-bold uppercase tracking-wider text-red-800 pb-1 mb-2 border-b border-red-200 text-center">
+              3. Moral Justification
+            </div>
+            <ul class="text-xs space-y-1.5 text-stone-700 font-times list-disc list-inside">
+              <li>Saving 50,000 gold pieces pale compared to lost progeny</li>
+              <li>Contractual honor is foundational to civilization</li>
+              <li>Retaliation confirmed hypothesis: deceit yields disaster</li>
+              <li>Universal rule: honor commitments without bad faith</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Confidential Examiner Standards & Inquiry Strategy Directive (Exemplar Moved to Backend Grading Engine) -->
+      <div class="border border-stone-400 rounded bg-stone-50 overflow-hidden">
+        <div class="bg-stone-200 px-4 py-2.5 flex items-center justify-between border-b border-stone-300">
+          <div class="font-bold text-sm text-stone-800 font-times flex items-center space-x-2">
+            <svg class="w-4 h-4 text-amber-700" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg>
+            <span>Confidential Examination Protocol: Ground-Truth Criterion Benchmarking</span>
+          </div>
+          <span class="text-xs font-mono font-bold text-stone-600 bg-white px-2 py-0.5 rounded border border-stone-300">Examiner Reference Protected</span>
+        </div>
+        <div class="p-4 sm:p-5 space-y-3 font-times text-stone-800 text-xs sm:text-sm leading-relaxed bg-white">
+          <div class="p-3 bg-amber-50/80 border-l-4 border-amber-600 text-stone-800 space-y-1">
+            <span class="font-bold text-stone-900 block text-xs uppercase tracking-wider">Independent Academic Evaluation Standards:</span>
+            <p>
+              To preserve authentic assessment conditions, the certified Band 9.0 benchmark model response has been shifted to the automated diagnostic evaluation engine. Candidate scripts are graded dynamically against this reference model across four distinct analytical criteria:
+            </p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs">
+            <div class="p-2.5 bg-stone-50 border border-stone-200 rounded">
+              <span class="font-bold text-blue-900 block">1. Inquiry Formulation:</span>
+              <span>Explicit RQ syntax ("How did...") paired with a testable prediction ("It is hypothesized that...").</span>
+            </div>
+            <div class="p-2.5 bg-stone-50 border border-stone-200 rounded">
+              <span class="font-bold text-sky-900 block">2. Textual Fact Fidelity:</span>
+              <span>Inclusion of contract sum (50,000 gold), Weser River drowning, Chief's pretext, and cave vanishing.</span>
+            </div>
+            <div class="p-2.5 bg-stone-50 border border-stone-200 rounded">
+              <span class="font-bold text-teal-900 block">3. Evaluative Reasoning:</span>
+              <span>Exposing why the Chief's argument was logically fraudulent and directly provoked retaliation.</span>
+            </div>
+            <div class="p-2.5 bg-stone-50 border border-stone-200 rounded">
+              <span class="font-bold text-amber-900 block">4. Universal Moral Verdict:</span>
+              <span>Synthesizing an enduring philosophical rule on civic honor and the cost of broken trust.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="exam-paper p-6 sm:p-8 rounded-lg space-y-6">
+      <div class="flex items-center justify-between border-b-2 border-stone-800 pb-2">
+        <h3 class="text-lg font-bold font-times uppercase tracking-wider text-stone-900">
+          Section 4: Grade 8 Analytical Writing Assessment Rubric
+        </h3>
+        <span class="text-xs text-stone-500 font-mono">BAND 1.0 – 4.0 DESCRIPTORS</span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse formal-border">
+          <thead>
+            <tr class="bg-stone-800 text-stone-100 font-times uppercase">
+              <th class="p-2.5 border border-stone-700 w-1/5">Evaluation Criteria</th>
+              <th class="p-2.5 border border-stone-700 bg-emerald-950 text-emerald-100 w-1/5">Band 4 (Excellent)</th>
+              <th class="p-2.5 border border-stone-700 bg-blue-950 text-blue-100 w-1/5">Band 3 (Good)</th>
+              <th class="p-2.5 border border-stone-700 bg-amber-950 text-amber-100 w-1/5">Band 2 (Developing)</th>
+              <th class="p-2.5 border border-stone-700 bg-red-950 text-red-100 w-1/5">Band 1 (Needs Improvement)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-300 font-times text-[11px] sm:text-xs">
+            <tr>
+              <td class="p-2.5 font-bold bg-stone-100 border border-stone-300 text-stone-900">1. RQ & Hypothesis Formulation</td>
+              <td class="p-2.5 border border-stone-300 bg-emerald-50/40">Clear, focused RQ and testable H clearly stated in Intro.</td>
+              <td class="p-2.5 border border-stone-300 bg-blue-50/40">RQ and H present with minor ambiguity in phrasing.</td>
+              <td class="p-2.5 border border-stone-300 bg-amber-50/40">RQ or H missing or loosely connected to topic.</td>
+              <td class="p-2.5 border border-stone-300 bg-red-50/40">No clear RQ or Hypothesis formulated.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-bold bg-stone-100 border border-stone-300 text-stone-900">2. Evidence Integration</td>
+              <td class="p-2.5 border border-stone-300 bg-emerald-50/40">Accurate, specific facts (50k gold, rats, river, cave) seamless.</td>
+              <td class="p-2.5 border border-stone-300 bg-blue-50/40">Includes main story facts with minor omission of detail.</td>
+              <td class="p-2.5 border border-stone-300 bg-amber-50/40">Generic summary of story without specific textual proof.</td>
+              <td class="p-2.5 border border-stone-300 bg-red-50/40">Inaccurate, fragmented, or missing story details.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-bold bg-stone-100 border border-stone-300 text-stone-900">3. Logical Justification</td>
+              <td class="p-2.5 border border-stone-300 bg-emerald-50/40">Flawlessly links evidence back to hypothesis and moral truth.</td>
+              <td class="p-2.5 border border-stone-300 bg-blue-50/40">Explains connection between evidence and moral clearly.</td>
+              <td class="p-2.5 border border-stone-300 bg-amber-50/40">Weak logical bridge between evidence and justification.</td>
+              <td class="p-2.5 border border-stone-300 bg-red-50/40">Lacks moral evaluation or cohesive reasoning.</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-bold bg-stone-100 border border-stone-300 text-stone-900">4. IELTS Structure & Word Limit</td>
+              <td class="p-2.5 border border-stone-300 bg-emerald-50/40">Strictly follows 4 paragraphs; within 250 words (±10%).</td>
+              <td class="p-2.5 border border-stone-300 bg-blue-50/40">Follows 4 paragraphs; slightly over/under target band.</td>
+              <td class="p-2.5 border border-stone-300 bg-amber-50/40">Unorganized paragraphing; noticeably off target words.</td>
+              <td class="p-2.5 border border-stone-300 bg-red-50/40">Single block text; completely ignores word constraints.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="writingStation" class="exam-paper p-6 sm:p-8 rounded-lg space-y-6 scroll-mt-20 formal-border bg-white">
+      <div class="flex flex-wrap items-center justify-between border-b-2 border-stone-800 pb-3 gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-red-900">Candidate Examination Workspace</span>
+          <h3 class="text-xl sm:text-2xl font-bold font-times text-stone-900">
+            Official IELTS Response Booklet
+          </h3>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <div class="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 bg-emerald-50 text-emerald-800 border border-emerald-300 rounded text-xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+            <span class="font-semibold text-[11px]">Independent Exam Active</span>
+          </div>
+          <button onclick="clearResponsePad()" class="px-3 py-1 bg-stone-100 hover:bg-red-50 text-red-800 text-xs font-bold rounded border border-stone-400 transition">
+            Clear Workspace
+          </button>
+        </div>
+      </div>
+
+      <!-- Real-Time Metrics Header -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-stone-50 p-3.5 border border-stone-300 rounded text-center">
+        <div>
+          <span class="text-[11px] uppercase font-bold text-stone-500 block">Total Words</span>
+          <span id="metricWordCount" class="font-mono text-2xl font-bold text-stone-900">0</span>
+          <span id="metricWordStatus" class="text-[10px] text-amber-700 font-semibold block">Under Target (&lt;225)</span>
+        </div>
+        <div>
+          <span class="text-[11px] uppercase font-bold text-stone-500 block">Target Band</span>
+          <span class="font-mono text-2xl font-bold text-emerald-800">250 <span class="text-xs font-normal text-stone-600">±10%</span></span>
+          <span class="text-[10px] text-stone-500 block">(225 – 275 words)</span>
+        </div>
+        <div>
+          <span class="text-[11px] uppercase font-bold text-stone-500 block">Paragraphs Detected</span>
+          <span id="metricParaCount" class="font-mono text-2xl font-bold text-stone-900">0 / 4</span>
+          <span id="metricParaStatus" class="text-[10px] text-stone-500 block">Requires 4 Parts</span>
+        </div>
+        <div>
+          <span class="text-[11px] uppercase font-bold text-stone-500 block">Diagnostic Health</span>
+          <span id="metricHealth" class="font-mono text-2xl font-bold text-stone-400">—</span>
+          <span id="metricHealthSub" class="text-[10px] text-stone-500 block">Ready to evaluate</span>
+        </div>
+      </div>
+
+      <!-- Writing Mode Selector: Unified Editor vs Guided Paragraph Boxes -->
+      <div class="flex items-center justify-between border-b border-stone-200 pb-2">
+        <div class="flex space-x-2">
+          <button id="modeUnifiedBtn" onclick="switchEditorMode('unified')" class="px-3 py-1 text-xs font-bold rounded bg-stone-800 text-white transition">
+            Continuous Essay Mode
+          </button>
+          <button id="modeGuidedBtn" onclick="switchEditorMode('guided')" class="px-3 py-1 text-xs font-bold rounded bg-stone-200 text-stone-700 hover:bg-stone-300 transition">
+            Guided 4-Step Mode
+          </button>
+        </div>
+        <span class="text-xs text-stone-500 italic hidden sm:inline">Autosaves locally to browser session</span>
+      </div>
+
+      <!-- Unified Editor Area -->
+      <div id="unifiedEditorContainer" class="space-y-2">
+        <label for="unifiedEssayInput" class="block text-xs uppercase tracking-wider font-bold text-stone-700">
+          Enter Your Complete 4-Paragraph Analytical Essay:
+        </label>
+        <textarea
+          id="unifiedEssayInput"
+          oninput="handleEssayInput()"
+          rows="15"
+          placeholder="Step 1 (Introduction): Context, Research Question (RQ), and testable Hypothesis (H)...&#10;&#10;Step 2 (Findings): Textual evidence regarding the 50,000 gold promise, rat clearance, betrayal, and cave...&#10;&#10;Step 3 (Justification): Connect findings back to hypothesis; analyze why the Chief's deceit provoked catastrophe...&#10;&#10;Step 4 (Conclusion): Universal moral lesson on integrity and contractual honor..."
+          class="w-full p-4 border-2 border-stone-400 rounded-none focus:outline-none focus:border-stone-900 font-times text-base text-stone-900 leading-relaxed bg-[#fefefe] shadow-inner"
+        ></textarea>
+      </div>
+
+      <!-- Guided 4-Step Editor Container (Hidden by default) -->
+      <div id="guidedEditorContainer" class="hidden space-y-4">
+        <!-- Step 1 Guided -->
+        <div class="p-3 bg-stone-50 border border-stone-300 rounded space-y-1">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-blue-900 uppercase">Step 1: Introduction (~50 Words)</span>
+            <span id="gStep1Count" class="font-mono text-stone-600 font-semibold">0 words</span>
+          </div>
+          <p class="text-[11px] text-stone-600 italic">State 1 context sentence, 1 Research Question ("How did..."), and 1 Hypothesis ("It is hypothesized...").</p>
+          <textarea id="guidedStep1" oninput="syncGuidedToUnified()" rows="3" class="w-full p-2.5 border border-stone-400 font-times text-sm text-stone-900 focus:outline-none focus:border-stone-800"></textarea>
+        </div>
+
+        <!-- Step 2 Guided -->
+        <div class="p-3 bg-stone-50 border border-stone-300 rounded space-y-1">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-sky-900 uppercase">Step 2: Evidence-Based Findings (~100 Words)</span>
+            <span id="gStep2Count" class="font-mono text-stone-600 font-semibold">0 words</span>
+          </div>
+          <p class="text-[11px] text-stone-600 italic">Detail rat swarm, 50,000 gold promise, river drowning, Chief's false logic, and mountain cave retaliation.</p>
+          <textarea id="guidedStep2" oninput="syncGuidedToUnified()" rows="4" class="w-full p-2.5 border border-stone-400 font-times text-sm text-stone-900 focus:outline-none focus:border-stone-800"></textarea>
+        </div>
+
+        <!-- Step 3 Guided -->
+        <div class="p-3 bg-stone-50 border border-stone-300 rounded space-y-1">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-teal-900 uppercase">Step 3: Justification & Proof (~70 Words)</span>
+            <span id="gStep3Count" class="font-mono text-stone-600 font-semibold">0 words</span>
+          </div>
+          <p class="text-[11px] text-stone-600 italic">Explain how findings justify the hypothesis; expose the fallacy of the Chief's greed.</p>
+          <textarea id="guidedStep3" oninput="syncGuidedToUnified()" rows="3" class="w-full p-2.5 border border-stone-400 font-times text-sm text-stone-900 focus:outline-none focus:border-stone-800"></textarea>
+        </div>
+
+        <!-- Step 4 Guided -->
+        <div class="p-3 bg-stone-50 border border-stone-300 rounded space-y-1">
+          <div class="flex justify-between items-center text-xs">
+            <span class="font-bold text-amber-900 uppercase">Step 4: Conclusion & Moral Takeaway (~30 Words)</span>
+            <span id="gStep4Count" class="font-mono text-stone-600 font-semibold">0 words</span>
+          </div>
+          <p class="text-[11px] text-stone-600 italic">Summarize universal moral truth regarding integrity and honoring civic obligations.</p>
+          <textarea id="guidedStep4" oninput="syncGuidedToUnified()" rows="2" class="w-full p-2.5 border border-stone-400 font-times text-sm text-stone-900 focus:outline-none focus:border-stone-800"></textarea>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t-2 border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-xs text-stone-600 font-times text-center sm:text-left">
+          <span>Official Submission Trigger: Clicking below computes an automated IELTS Band Score and initiates a downloadable Word Document (.docx) Examiner Report.</span>
+        </div>
+
+        <div class="flex items-center space-x-3 w-full sm:w-auto">
+          <button
+            id="submitExamBtn"
+            onclick="processExaminationSubmission()"
+            class="w-full sm:w-auto px-6 py-3 bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-bold text-sm tracking-wider uppercase rounded shadow-md transition flex items-center justify-center space-x-2 border-2 border-red-950 active:scale-95"
+          >
+            <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Submit Exam & Download Report (.docx)</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div id="reportModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-stone-900/80 backdrop-blur-sm p-4 sm:p-6 flex items-center justify-center">
+      <div class="bg-white rounded-lg shadow-2xl max-w-4xl w-full p-6 sm:p-8 border-4 border-stone-800 max-h-[90vh] overflow-y-auto space-y-6">
+        
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between border-b-2 border-stone-800 pb-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-red-800 text-white rounded-full flex items-center justify-center font-bold text-sm">
+              IELTS
+            </div>
+            <div>
+              <span class="text-xs uppercase font-bold text-red-800 tracking-wider">Official Examiner Assessment</span>
+              <h4 class="text-xl sm:text-2xl font-bold font-times text-stone-900 leading-tight">
+                Analytical Writing Diagnostic Examination Report
+              </h4>
+            </div>
+          </div>
+          <button onclick="closeReportModal()" class="text-stone-500 hover:text-stone-900 text-2xl font-bold px-2">
+            &times;
+          </button>
+        </div>
+
+        <!-- Candidate & Band Summary Banner -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-stone-100 p-4 border border-stone-300 rounded font-times">
+          <div>
+            <span class="text-xs uppercase font-bold text-stone-500 block">Candidate:</span>
+            <span id="modalCandidateName" class="text-base font-bold text-stone-900 block">—</span>
+            <span id="modalCandidateMeta" class="text-xs text-stone-600 block">—</span>
+          </div>
+          <div class="text-center sm:border-x border-stone-300 sm:px-3">
+            <span class="text-xs uppercase font-bold text-stone-500 block">Overall Analytical Band:</span>
+            <span id="modalOverallBand" class="text-3xl font-bold text-red-900 font-mono">Band 3.5</span>
+            <span id="modalIeltsEquivalent" class="text-xs font-semibold text-stone-700 block">IELTS Equivalent: Band 7.5</span>
+          </div>
+          <div class="text-right">
+            <span class="text-xs uppercase font-bold text-stone-500 block">Verified Word Count:</span>
+            <span id="modalWordCount" class="text-2xl font-bold text-stone-900 font-mono">214 Words</span>
+            <span id="modalWordVerdict" class="text-xs text-emerald-700 font-bold block">Within Acceptable Band</span>
+          </div>
+        </div>
+
+        <!-- Itemized Section Breakdown (Strengths, Weaknesses, Improvements) -->
+        <div class="space-y-4">
+          <h5 class="text-sm font-bold uppercase tracking-wider text-stone-800 border-b border-stone-300 pb-1 font-times">
+            Section-by-Section Itemized Diagnostic Breakdown
+          </h5>
+          <div id="diagnosticSectionsList" class="space-y-3">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Rubric Scoring Matrix Visual -->
+        <div class="bg-stone-50 border border-stone-300 p-4 rounded">
+          <h5 class="text-xs font-bold uppercase tracking-wider text-stone-800 mb-2 font-times">
+            Criterion-Wise Performance Scoring
+          </h5>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+            <div class="p-2 bg-white border border-stone-300 rounded">
+              <span class="text-[10px] text-stone-500 block">1. RQ & Hypothesis</span>
+              <span id="scoreRQ" class="font-mono text-base font-bold text-stone-900">4.0 / 4.0</span>
+            </div>
+            <div class="p-2 bg-white border border-stone-300 rounded">
+              <span class="text-[10px] text-stone-500 block">2. Narrative Evidence</span>
+              <span id="scoreEvidence" class="font-mono text-base font-bold text-stone-900">3.5 / 4.0</span>
+            </div>
+            <div class="p-2 bg-white border border-stone-300 rounded">
+              <span class="text-[10px] text-stone-500 block">3. Logical Justification</span>
+              <span id="scoreLogic" class="font-mono text-base font-bold text-stone-900">3.5 / 4.0</span>
+            </div>
+            <div class="p-2 bg-white border border-stone-300 rounded">
+              <span class="text-[10px] text-stone-500 block">4. Structure & Limit</span>
+              <span id="scoreStructure" class="font-mono text-base font-bold text-stone-900">4.0 / 4.0</span>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-stone-200 flex flex-wrap items-center justify-between text-xs text-stone-700">
+            <span class="font-bold">Automated Benchmark Concordance Index:</span>
+            <span id="benchmarkAlignmentBadge" class="font-mono font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+              --% Alignment with Ground-Truth Reference
+            </span>
+          </div>
+        </div>
+
+        <!-- Action Download Footer -->
+        <div class="pt-4 border-t-2 border-stone-800 flex flex-wrap items-center justify-between gap-3">
+          <span class="text-xs text-stone-600 font-times italic">
+            Automated evaluation generated by Cambridge Academic Diagnostic Engine.
+          </span>
+          <div class="flex items-center space-x-3">
+            <button onclick="downloadReportWordDoc()" class="px-5 py-2.5 bg-blue-800 hover:bg-blue-900 text-white text-xs font-bold uppercase tracking-wider rounded shadow flex items-center space-x-2">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Download Official Word Document (.docx)</span>
+            </button>
+            <button onclick="closeReportModal()" class="px-4 py-2.5 bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs font-bold uppercase tracking-wider rounded">
+              Close Preview
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Official Stamp and Copyright Footer -->
+    <footer class="text-center font-times text-xs text-stone-500 pt-6 pb-12 space-y-2 border-t border-stone-300">
+      <div class="flex items-center justify-center space-x-2 text-stone-700 font-bold uppercase tracking-widest text-[11px]">
+        <span>Official Cambridge-Standard Examination Material</span>
+        <span>•</span>
+        <span>Strict Academic Evaluation</span>
+      </div>
+      <p>Adapted from Pinkfong's Musical Story <em>The Pied Piper of Hamelin</em> for Grade 8 Analytical Writing Curriculum.</p>
+      <p class="text-[10px] text-stone-400">Security Encrypted Diagnostic Engine • Compliant with IELTS Task 2 Assessment Framework</p>
+    </footer>
+
+  </main>
+
+  <script>
+    /* Global Examination Timer State */
+    let totalSecondsRemaining = 30 * 60; // 30 minutes in seconds
+    let timerInterval = null;
+    let isTimerRunning = true;
+
+    /* Current Evaluation Assessment Cache */
+    let currentEvaluationReport = null;
+
+    /**
+     * OFFICIAL BENCHMARK GROUND-TRUTH EXEMPLAR (BACKEND GRADING REFERENCE)
+     * Hidden from the front-facing student question paper to preserve examination validity.
+     * Serves as the golden standard for semantic alignment, key term density, and structural fidelity.
+     */
+    const BACKEND_BENCHMARK_MODEL = {
+      title: "The Cost of Dishonesty in Hamelin",
+      targetWordCount: 209,
+      paragraphs: [
+        {
+          step: 1,
+          name: "Introduction",
+          targetWords: 48,
+          text: "In Hamelin, a severe rat crisis exposed the fragile morality of its leadership. This essay investigates: How did the Town Chief's refusal to honor his financial contract impact the safety of Hamelin? It is hypothesized that breaking a solemn promise destroys communal trust and leads to total catastrophic loss.",
+          coreKeywords: ["hamelin", "rat", "crisis", "morality", "leadership", "investigates", "chief", "refusal", "contract", "safety", "hypothesized", "promise", "communal trust", "catastrophic loss"]
+        },
+        {
+          step: 2,
+          name: "Findings",
+          targetWords: 98,
+          text: "Textual evidence confirms that after a swarm of horrible rats invaded Hamelin and consumed crops, clothing, and stored food, the Town Chief promised the Pied Piper 50,000 gold pieces to clear the infestation. The Piper played his wooden pipe, leading all the rats into the river where they drowned. However, upon returning for payment, the Chief dishonestly refused to give him any gold, falsely arguing that the river water and pipe did the labor. In response, the Piper returned the following day, played his pipe, and led all the town's children into a mountain cave where they vanished forever.",
+          coreKeywords: ["textual evidence", "swarm", "rats", "50,000", "gold", "pied piper", "wooden pipe", "river", "drowned", "refused", "labor", "mountain cave", "children", "vanished"]
+        },
+        {
+          step: 3,
+          name: "Justification",
+          targetWords: 42,
+          text: "These evidence-based findings fully justify the hypothesis. The Chief attempted to save gold by rationalizing a breach of contract, but his bad-faith argument directly provoked the Piper's retaliation. The tragic loss of the children proves that financial greed yields immense destruction.",
+          coreKeywords: ["findings", "justify", "hypothesis", "save gold", "breach of contract", "bad-faith", "provoked", "retaliation", "children", "financial greed", "destruction"]
+        },
+        {
+          step: 4,
+          name: "Conclusion",
+          targetWords: 21,
+          text: "In conclusion, Hamelin learned that integrity is non-negotiable. Breaking promises to gain short-term wealth ultimately destroys a community's future.",
+          coreKeywords: ["in conclusion", "integrity", "non-negotiable", "breaking promises", "short-term wealth", "destroys", "community", "future"]
+        }
+      ],
+      fullEssayText() {
+        return this.paragraphs.map(p => p.text).join("\n\n");
+      }
+    };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      startTimer();
+      handleEssayInput();
+    });
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (totalSecondsRemaining > 0) {
+          totalSecondsRemaining--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          handleTimeExpired();
+        }
+      }, 1000);
+      isTimerRunning = true;
+      document.getElementById("toggleTimerBtn").textContent = "Pause";
+    }
+
+    function toggleTimer() {
+      if (isTimerRunning) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        document.getElementById("toggleTimerBtn").textContent = "Resume";
+      } else {
+        startTimer();
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      totalSecondsRemaining = 30 * 60;
+      updateTimerDisplay();
+      startTimer();
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(totalSecondsRemaining / 60);
+      const seconds = totalSecondsRemaining % 60;
+      const displayStr = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      
+      const timerElement = document.getElementById("examTimer");
+      const timerCard = document.getElementById("timerCard");
+      timerElement.textContent = displayStr;
+
+      // Visual warning below 5 minutes (300s)
+      if (totalSecondsRemaining <= 300 && totalSecondsRemaining > 0) {
+        timerCard.classList.add("timer-warning");
+      } else {
+        timerCard.classList.remove("timer-warning");
+      }
+    }
+
+    function handleTimeExpired() {
+      updateTimerDisplay();
+      alert("TIME EXPIRED: The 30-minute testing window has concluded. Please proceed to review and generate your final grading report.");
+    }
+
+    function switchEditorMode(mode) {
+      const unifiedBox = document.getElementById("unifiedEditorContainer");
+      const guidedBox = document.getElementById("guidedEditorContainer");
+      const unifiedBtn = document.getElementById("modeUnifiedBtn");
+      const guidedBtn = document.getElementById("modeGuidedBtn");
+
+      if (mode === 'unified') {
+        unifiedBox.classList.remove("hidden");
+        guidedBox.classList.add("hidden");
+        unifiedBtn.className = "px-3 py-1 text-xs font-bold rounded bg-stone-800 text-white transition";
+        guidedBtn.className = "px-3 py-1 text-xs font-bold rounded bg-stone-200 text-stone-700 hover:bg-stone-300 transition";
+        handleEssayInput();
+      } else {
+        unifiedBox.classList.add("hidden");
+        guidedBox.classList.remove("hidden");
+        guidedBtn.className = "px-3 py-1 text-xs font-bold rounded bg-stone-800 text-white transition";
+        unifiedBtn.className = "px-3 py-1 text-xs font-bold rounded bg-stone-200 text-stone-700 hover:bg-stone-300 transition";
+        splitUnifiedToGuided();
+      }
+    }
+
+    function countWords(str) {
+      if (!str) return 0;
+      const clean = str.trim().replace(/\s+/g, ' ');
+      if (!clean) return 0;
+      return clean.split(' ').filter(w => w.length > 0).length;
+    }
+
+    function handleEssayInput() {
+      const text = document.getElementById("unifiedEssayInput").value;
+      const words = countWords(text);
+      
+      // Split into paragraphs (non-empty)
+      const paragraphs = text.split(/\n+/).map(p => p.trim()).filter(p => p.length > 0);
+      const paraCount = paragraphs.length;
+
+      // Update UI Metrics
+      document.getElementById("metricWordCount").textContent = words;
+      document.getElementById("metricParaCount").textContent = `${paraCount} / 4`;
+
+      const statusLabel = document.getElementById("metricWordStatus");
+      if (words === 0) {
+        statusLabel.textContent = "Empty";
+        statusLabel.className = "text-[10px] text-stone-400 font-semibold block";
+      } else if (words < 225) {
+        statusLabel.textContent = `Under target by ${225 - words} words`;
+        statusLabel.className = "text-[10px] text-amber-700 font-semibold block";
+      } else if (words > 275) {
+        statusLabel.textContent = `Over limit by ${words - 275} words`;
+        statusLabel.className = "text-[10px] text-red-700 font-semibold block";
+      } else {
+        statusLabel.textContent = "Optimal IELTS Task 2 Window (225-275)";
+        statusLabel.className = "text-[10px] text-emerald-700 font-bold block";
+      }
+
+      // Quick diagnostic badge
+      const health = document.getElementById("metricHealth");
+      const healthSub = document.getElementById("metricHealthSub");
+      if (words >= 200 && paraCount >= 4) {
+        health.textContent = "Strong";
+        health.className = "font-mono text-2xl font-bold text-emerald-700";
+        healthSub.textContent = "Ready for submission";
+      } else if (words > 100) {
+        health.textContent = "In Progress";
+        health.className = "font-mono text-2xl font-bold text-amber-600";
+        healthSub.textContent = "Expand paragraphs";
+      } else {
+        health.textContent = "Drafting";
+        health.className = "font-mono text-2xl font-bold text-stone-400";
+        healthSub.textContent = "Formulate Step 1-4";
+      }
+    }
+
+    function splitUnifiedToGuided() {
+      const text = document.getElementById("unifiedEssayInput").value;
+      const paras = text.split(/\n\s*\n/).map(p => p.trim()).filter(p => p.length > 0);
+      
+      document.getElementById("guidedStep1").value = paras[0] || "";
+      document.getElementById("guidedStep2").value = paras[1] || "";
+      document.getElementById("guidedStep3").value = paras[2] || "";
+      document.getElementById("guidedStep4").value = paras.slice(3).join("\n\n") || "";
+
+      updateGuidedCounts();
+    }
+
+    function syncGuidedToUnified() {
+      const s1 = document.getElementById("guidedStep1").value.trim();
+      const s2 = document.getElementById("guidedStep2").value.trim();
+      const s3 = document.getElementById("guidedStep3").value.trim();
+      const s4 = document.getElementById("guidedStep4").value.trim();
+
+      const combined = [s1, s2, s3, s4].filter(s => s.length > 0).join("\n\n");
+      document.getElementById("unifiedEssayInput").value = combined;
+      updateGuidedCounts();
+      handleEssayInput();
+    }
+
+    function updateGuidedCounts() {
+      const s1 = document.getElementById("guidedStep1").value;
+      const s2 = document.getElementById("guidedStep2").value;
+      const s3 = document.getElementById("guidedStep3").value;
+      const s4 = document.getElementById("guidedStep4").value;
+
+      document.getElementById("gStep1Count").textContent = `${countWords(s1)} / ~50 words`;
+      document.getElementById("gStep2Count").textContent = `${countWords(s2)} / ~100 words`;
+      document.getElementById("gStep3Count").textContent = `${countWords(s3)} / ~70 words`;
+      document.getElementById("gStep4Count").textContent = `${countWords(s4)} / ~30 words`;
+    }
+
+    function clearResponsePad() {
+      if (document.getElementById("unifiedEssayInput").value.trim().length > 0) {
+        document.getElementById("unifiedEssayInput").value = "";
+        document.getElementById("guidedStep1").value = "";
+        document.getElementById("guidedStep2").value = "";
+        document.getElementById("guidedStep3").value = "";
+        document.getElementById("guidedStep4").value = "";
+        handleEssayInput();
+        updateGuidedCounts();
+      }
+    }
+
+    function computeBenchmarkConcordance(candidateText) {
+      if (!candidateText || candidateText.trim().length === 0) return 0;
+      
+      const cleanCandidate = candidateText.toLowerCase();
+      let matchedCount = 0;
+      let totalBenchmarkTokens = 0;
+
+      BACKEND_BENCHMARK_MODEL.paragraphs.forEach(p => {
+        p.coreKeywords.forEach(kw => {
+          totalBenchmarkTokens++;
+          if (cleanCandidate.includes(kw.toLowerCase())) {
+            matchedCount++;
+          }
+        });
+      });
+
+      const ratio = matchedCount / totalBenchmarkTokens;
+      return Math.min(100, Math.round(ratio * 100));
+    }
+
+    function evaluateEssayText(rawText) {
+      const words = countWords(rawText);
+      const paragraphs = rawText.split(/\n+/).map(p => p.trim()).filter(p => p.length > 0);
+      const p1 = paragraphs[0] || "";
+      const p2 = paragraphs[1] || "";
+      const p3 = paragraphs[2] || "";
+      const p4 = paragraphs.slice(3).join(" ") || "";
+
+      // Benchmark Concordance Calculation
+      const benchmarkScore = computeBenchmarkConcordance(rawText);
+
+      // Section 1 Evaluation: RQ & Hypothesis
+      let rqScore = 1.0;
+      let rqStrengths = [];
+      let rqWeaknesses = [];
+      let rqImprovements = [];
+
+      const hasRQ = /investigates|research question|how did|why did|\?/i.test(p1);
+      const hasHypothesis = /hypothes|hypothesized|predicted|posited|it is hypothesized/i.test(p1);
+      const hasContext = /hamelin|rat|crisis|infestation|leader/i.test(p1);
+
+      if (hasRQ && hasHypothesis && hasContext) {
+        rqScore = 4.0;
+        rqStrengths.push("Formulates an explicit, focused Research Question investigating civic fallout.");
+        rqStrengths.push("States a clear testable Hypothesis directly linking the broken promise to loss.");
+        rqStrengths.push("Exhibits high alignment with the inquiry structure established in the benchmark model.");
+      } else if ((hasRQ || hasHypothesis) && hasContext) {
+        rqScore = 2.5;
+        if (!hasRQ) {
+          rqWeaknesses.push("Missing explicit Research Question (RQ) syntax (e.g., 'This essay investigates: How did...').");
+          rqImprovements.push("Adopt the benchmark inquiry formula: explicitly state a Research Question addressing civic fallout.");
+        }
+        if (!hasHypothesis) {
+          rqWeaknesses.push("Missing predictive Hypothesis statement.");
+          rqImprovements.push("Introduce a formal predictive statement modeled on: 'It is hypothesized that...'");
+        }
+      } else {
+        rqScore = 1.5;
+        rqWeaknesses.push("Paragraph does not adopt the formal inquiry framework of RQ and Hypothesis.");
+        rqImprovements.push("Reconstruct Step 1: 1 background sentence, 1 Research Question, and 1 testable Hypothesis (~50 words).");
+      }
+
+      // Section 2 Evaluation: Narrative Evidence
+      let evScore = 1.0;
+      let evStrengths = [];
+      let evWeaknesses = [];
+      let evImprovements = [];
+
+      const mentions50k = /50,?000|fifty thousand|gold/i.test(p2);
+      const mentionsDrowning = /river|drowned|water|weser/i.test(p2);
+      const mentionsBetrayal = /refused|dishonest|cheat|pipe did the labor|labor|excuse|breach/i.test(p2);
+      const mentionsCave = /children|cave|mountain|vanish|retaliat/i.test(p2);
+
+      const evTokensFound = [mentions50k, mentionsDrowning, mentionsBetrayal, mentionsCave].filter(Boolean).length;
+      if (evTokensFound >= 4) {
+        evScore = 4.0;
+        evStrengths.push("Impeccable recall of narrative proof: specific citation of 50,000 gold, river drowning, fraudulent defense, and mountain cave.");
+        evStrengths.push("Integrates 100% of benchmark empirical story facts with precise quantitative and spatial anchors.");
+      } else if (evTokensFound >= 2) {
+        evScore = 3.0;
+        evStrengths.push("Presents core factual sequence of the Pied Piper narrative.");
+        if (!mentions50k) evWeaknesses.push("Omitted specific contract quantity (50,000 gold coins).");
+        if (!mentionsBetrayal) evWeaknesses.push("Chief's exact deceptive rationale ('the pipe and water did the labor') is omitted.");
+        evImprovements.push("Match benchmark factual density: cite the exact 50,000 gold figure and the Chief's fraudulent labor argument.");
+      } else {
+        evScore = 1.5;
+        evWeaknesses.push("Sparse textual evidence; resembles generic story retelling rather than empirical case proof.");
+        evImprovements.push("Detail concrete narrative facts: rat invasion, 50,000 gold contract, drowning in river, refusal of payment, and cave vanishing.");
+      }
+
+      // Section 3 Evaluation: Logical Justification
+      let justScore = 1.0;
+      let justStrengths = [];
+      let justWeaknesses = [];
+      let justImprovements = [];
+
+      const hasCausalLogic = /provok|direct|caus|justif|confirm|result|proves|because|rationaliz/i.test(p3);
+      const linksHypothesis = /hypothesis|findings|evidence|prov|demonstrat/i.test(p3);
+      const evaluatesMoral = /greed|integrity|wealth|contract|dishonest|ruin|destruct/i.test(p3);
+
+      if (hasCausalLogic && linksHypothesis && evaluatesMoral) {
+        justScore = 4.0;
+        justStrengths.push("Flawlessly connects empirical findings back to hypothesis confirmation.");
+        justStrengths.push("Exposes the logical fallacy of the Town Chief attempting short-term financial savings at the expense of communal security.");
+      } else if (hasCausalLogic || evaluatesMoral) {
+        justScore = 2.5;
+        justStrengths.push("Understands the moral breach committed by the Chief.");
+        justWeaknesses.push("Logical bridge between the narrative evidence and hypothesis confirmation could be more explicit.");
+        justImprovements.push("State explicitly how the evidence confirms the hypothesis, analyzing why the Chief's bad-faith logic triggered retaliation.");
+      } else {
+        justScore = 1.5;
+        justWeaknesses.push("Lacks an analytical justification paragraph explaining causation.");
+        justImprovements.push("Dedicate ~70 words to evaluating how the Chief's dishonest argument directly provoked retaliation.");
+      }
+
+      // Section 4 Evaluation: IELTS Structure, Word Count & Conclusion
+      let structScore = 1.0;
+      let structStrengths = [];
+      let structWeaknesses = [];
+      let structImprovements = [];
+
+      if (words >= 225 && words <= 275) {
+        structStrengths.push(`Strict compliance with IELTS word requirement: exactly ${words} words (within ±10% margin).`);
+      } else if (words >= 190 && words <= 300) {
+        structWeaknesses.push(`Word count (${words} words) is slightly off the optimal 225-275 band.`);
+      } else {
+        structWeaknesses.push(`Word count (${words} words) severely breaches the prescribed 250-word constraint.`);
+        structImprovements.push("Adjust total essay length to sit firmly between 225 and 275 words.");
+      }
+
+      if (paragraphs.length === 4) {
+        structStrengths.push("Follows the mandatory four-step paragraph architecture seamlessly.");
+      } else {
+        structWeaknesses.push(`Detected ${paragraphs.length} paragraphs instead of the mandatory 4 distinct steps.`);
+        structImprovements.push("Strictly segment your writing into 4 separate paragraphs: Introduction, Findings, Justification, Conclusion.");
+      }
+
+      const hasConclusionSignal = /conclusion|in conclusion|ultimately|lesson|integrity|moral/i.test(p4);
+      if (hasConclusionSignal && p4.length > 0) {
+        structStrengths.push("Delivers a conclusive moral verdict on civic honor and communal integrity.");
+      } else {
+        structWeaknesses.push("Conclusion lacks a decisive philosophical takeaway regarding civic integrity.");
+        structImprovements.push("Conclude with a sharp 30-word synthesis stating that civic integrity is non-negotiable.");
+      }
+
+      if (paragraphs.length === 4 && words >= 225 && words <= 275) {
+        structScore = 4.0;
+      } else if (paragraphs.length >= 3 && words >= 180) {
+        structScore = 3.0;
+      } else {
+        structScore = 2.0;
+      }
+
+      const overallBand = ((rqScore + evScore + justScore + structScore) / 4);
+      const roundedBand = (Math.round(overallBand * 2) / 2).toFixed(1);
+
+      let ieltsBand = "Band 5.0";
+      if (roundedBand >= 3.8) ieltsBand = "Band 8.5 – 9.0 (Expert Analytical User)";
+      else if (roundedBand >= 3.3) ieltsBand = "Band 7.5 – 8.0 (Very Good User)";
+      else if (roundedBand >= 2.8) ieltsBand = "Band 6.5 – 7.0 (Competent Academic User)";
+      else if (roundedBand >= 2.0) ieltsBand = "Band 5.0 – 6.0 (Modest Analytical User)";
+      else ieltsBand = "Band 3.5 – 4.5 (Limited Formulation)";
+
+      return {
+        words,
+        paragraphs,
+        roundedBand,
+        ieltsBand,
+        benchmarkScore,
+        criteria: {
+          rq: { score: rqScore.toFixed(1), strengths: rqStrengths, weaknesses: rqWeaknesses, improvements: rqImprovements },
+          evidence: { score: evScore.toFixed(1), strengths: evStrengths, weaknesses: evWeaknesses, improvements: evImprovements },
+          justification: { score: justScore.toFixed(1), strengths: justStrengths, weaknesses: justWeaknesses, improvements: justImprovements },
+          structure: { score: structScore.toFixed(1), strengths: structStrengths, weaknesses: structWeaknesses, improvements: structImprovements }
+        }
+      };
+    }
+
+    function processExaminationSubmission() {
+      const essay = document.getElementById("unifiedEssayInput").value;
+      if (!essay || essay.trim().length < 20) {
+        alert("RESPONSE EMPTY: Please write your analytical essay before submitting for examination grading.");
+        return;
+      }
+
+      currentEvaluationReport = evaluateEssayText(essay);
+
+      const candidateName = document.getElementById("candidateName").value || "Candidate";
+      const candidateNum = document.getElementById("candidateNumber").value || "000000";
+      const centreNum = document.getElementById("centreNumber").value || "UK884";
+      const examDate = document.getElementById("examDate").value || "October 3, 2026";
+
+      document.getElementById("modalCandidateName").textContent = candidateName;
+      document.getElementById("modalCandidateMeta").textContent = `No: ${candidateNum} | Centre: ${centreNum} | Date: ${examDate}`;
+      document.getElementById("modalOverallBand").textContent = `Band ${currentEvaluationReport.roundedBand}`;
+      document.getElementById("modalIeltsEquivalent").textContent = currentEvaluationReport.ieltsBand;
+      document.getElementById("modalWordCount").textContent = `${currentEvaluationReport.words} Words`;
+
+      const wordVerdict = document.getElementById("modalWordVerdict");
+      if (currentEvaluationReport.words >= 225 && currentEvaluationReport.words <= 275) {
+        wordVerdict.textContent = "Within Prescribed IELTS Target Band (225-275)";
+        wordVerdict.className = "text-xs text-emerald-700 font-bold block";
+      } else {
+        wordVerdict.textContent = "Outside Prescribed 250 Word Target (±10%)";
+        wordVerdict.className = "text-xs text-red-700 font-bold block";
+      }
+
+      document.getElementById("scoreRQ").textContent = `${currentEvaluationReport.criteria.rq.score} / 4.0`;
+      document.getElementById("scoreEvidence").textContent = `${currentEvaluationReport.criteria.evidence.score} / 4.0`;
+      document.getElementById("scoreLogic").textContent = `${currentEvaluationReport.criteria.justification.score} / 4.0`;
+      document.getElementById("scoreStructure").textContent = `${currentEvaluationReport.criteria.structure.score} / 4.0`;
+
+      // Update Benchmark Alignment Badge
+      const bmBadge = document.getElementById("benchmarkAlignmentBadge");
+      bmBadge.textContent = `${currentEvaluationReport.benchmarkScore}% Concordance with Ground-Truth Reference`;
+      if (currentEvaluationReport.benchmarkScore >= 75) {
+        bmBadge.className = "font-mono font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200";
+      } else if (currentEvaluationReport.benchmarkScore >= 50) {
+        bmBadge.className = "font-mono font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200";
+      } else {
+        bmBadge.className = "font-mono font-bold text-red-800 bg-red-50 px-2 py-0.5 rounded border border-red-200";
+      }
+
+      renderDiagnosticSectionsUI(currentEvaluationReport);
+      document.getElementById("reportModal").classList.remove("hidden");
+      downloadReportWordDoc();
+    }
+
+    function renderDiagnosticSectionsUI(report) {
+      const container = document.getElementById("diagnosticSectionsList");
+      container.innerHTML = "";
+
+      const sections = [
+        { title: "Item 1: Research Question & Hypothesis Formulation (Introduction)", key: "rq", badge: "Step 1" },
+        { title: "Item 2: Narrative Evidence Integration (Findings)", key: "evidence", badge: "Step 2" },
+        { title: "Item 3: Logical Justification & Empirical Proof", key: "justification", badge: "Step 3" },
+        { title: "Item 4: IELTS Structure, Word Count & Moral Verdict (Conclusion)", key: "structure", badge: "Step 4" }
+      ];
+
+      sections.forEach(s => {
+        const item = report.criteria[s.key];
+        const card = document.createElement("div");
+        card.className = "p-3.5 bg-stone-50 border border-stone-300 rounded font-times text-xs space-y-1.5";
+
+        let html = `
+          <div class="flex items-center justify-between border-b border-stone-200 pb-1">
+            <span class="font-bold text-stone-900">${s.title}</span>
+            <span class="font-mono font-bold text-stone-800 bg-white px-2 py-0.5 border border-stone-300 rounded">Score: ${item.score} / 4.0</span>
+          </div>
+        `;
+
+        if (item.strengths.length > 0) {
+          html += `
+            <div class="pt-1">
+              <span class="font-bold text-emerald-800 uppercase text-[10px] tracking-wider block">Observed Strengths:</span>
+              <ul class="list-disc list-inside text-stone-700 space-y-0.5 pl-1">
+                ${item.strengths.map(st => `<li>${st}</li>`).join("")}
+              </ul>
+            </div>
+          `;
+        }
+
+        if (item.weaknesses.length > 0) {
+          html += `
+            <div class="pt-1">
+              <span class="font-bold text-amber-900 uppercase text-[10px] tracking-wider block">Identified Weaknesses:</span>
+              <ul class="list-disc list-inside text-stone-700 space-y-0.5 pl-1">
+                ${item.weaknesses.map(w => `<li>${w}</li>`).join("")}
+              </ul>
+            </div>
+          `;
+        }
+
+        if (item.improvements.length > 0) {
+          html += `
+            <div class="pt-1">
+              <span class="font-bold text-blue-900 uppercase text-[10px] tracking-wider block">Actionable Area for Improvement:</span>
+              <ul class="list-disc list-inside text-stone-700 space-y-0.5 pl-1">
+                ${item.improvements.map(imp => `<li>${imp}</li>`).join("")}
+              </ul>
+            </div>
+          `;
+        }
+
+        card.innerHTML = html;
+        container.appendChild(card);
+      });
+    }
+
+    function closeReportModal() {
+      document.getElementById("reportModal").classList.add("hidden");
+    }
+
+    async function downloadReportWordDoc() {
+      if (!currentEvaluationReport) {
+        const essay = document.getElementById("unifiedEssayInput").value;
+        currentEvaluationReport = evaluateEssayText(essay);
+      }
+
+      const candidateName = document.getElementById("candidateName").value || "Candidate";
+      const candidateNum = document.getElementById("candidateNumber").value || "004892-G8";
+      const centreNum = document.getElementById("centreNumber").value || "UK884-ACAD";
+      const examDate = document.getElementById("examDate").value || "October 3, 2026";
+      const submittedEssay = document.getElementById("unifiedEssayInput").value;
+
+      const filename = `IELTS_Task2_Grading_Report_${candidateName.replace(/\s+/g, '_')}.docx`;
+
+      // Try creating genuine binary .docx via docx.js
+      if (window.docx && window.docx.Document) {
+        try {
+          const { Document, Packer, Paragraph, TextRun, HeadingLevel, Table, TableRow, TableCell, WidthType, BorderStyle, AlignmentType } = window.docx;
+
+          const doc = new Document({
+            styles: {
+              default: {
+                document: {
+                  run: { font: "Times New Roman", size: 24, color: "1A1A1A" },
+                  paragraph: { spacing: { line: 360, after: 140 } }
+                }
+              }
+            },
+            sections: [{
+              properties: {
+                page: {
+                  margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 }
+                }
+              },
+              children: [
+                // Header Title
+                new Paragraph({
+                  text: "INTERNATIONAL ENGLISH LANGUAGE TESTING SYSTEM",
+                  heading: HeadingLevel.HEADING_2,
+                  alignment: AlignmentType.CENTER,
+                  run: { bold: true, color: "8B0000", size: 22 }
+                }),
+                new Paragraph({
+                  text: "OFFICIAL EXAMINER GRADING & DIAGNOSTIC REPORT",
+                  heading: HeadingLevel.HEADING_1,
+                  alignment: AlignmentType.CENTER,
+                  run: { bold: true, color: "16222F", size: 28 }
+                }),
+                new Paragraph({
+                  text: "Grade 8 English Language Arts: IELTS Task 2 Analytical Writing",
+                  alignment: AlignmentType.CENTER,
+                  run: { italics: true, color: "555555", size: 20 }
+                }),
+
+                new Paragraph({ text: "" }), // spacer
+
+                // Candidate Information Table
+                new Table({
+                  width: { size: 100, type: WidthType.PERCENTAGE },
+                  rows: [
+                    new TableRow({
+                      children: [
+                        new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Candidate Name:", bold: true })] })] }),
+                        new TableCell({ children: [new Paragraph({ text: candidateName })] }),
+                        new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Candidate Number:", bold: true })] })] }),
+                        new TableCell({ children: [new Paragraph({ text: candidateNum })] })
+                      ]
+                    }),
+                    new TableRow({
+                      children: [
+                        new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Centre Number:", bold: true })] })] }),
+                        new TableCell({ children: [new Paragraph({ text: centreNum })] }),
+                        new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Examination Date:", bold: true })] })] }),
+                        new TableCell({ children: [new Paragraph({ text: examDate })] })
+                      ]
+                    }),
+                    new TableRow({
+                      children: [
+                        new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Prescribed Topic:", bold: true })] })] }),
+                        new TableCell({ columnSpan: 3, children: [new Paragraph({ text: "The Pied Piper of Hamelin — Breach of Contract & Civic Justification" })] })
+                      ]
+                    })
+                  ]
+                }),
+
+                new Paragraph({ text: "" }),
+
+                // Overall Band Summary Box
+                new Paragraph({
+                  heading: HeadingLevel.HEADING_2,
+                  children: [new TextRun({ text: "1. Overall Assessment Summary", bold: true, color: "16222F" })]
+                }),
+                new Paragraph({
+                  children: [
+                    new TextRun({ text: `Evaluated Overall Band: Band ${currentEvaluationReport.roundedBand} / 4.00   |   `, bold: true, color: "8B0000" }),
+                    new TextRun({ text: `${currentEvaluationReport.ieltsBand}\n`, bold: true }),
+                    new TextRun({ text: `Benchmark Model Concordance: ${currentEvaluationReport.benchmarkScore}% alignment with official reference.\n`, bold: true, color: "0B5394" }),
+                    new TextRun({ text: `Total Submitted Words: ${currentEvaluationReport.words} Words (Target: 250 ±10%). Status: ${currentEvaluationReport.words >= 225 && currentEvaluationReport.words <= 275 ? "Optimal compliant word length." : "Word count deviation flagged."}` })
+                  ]
+                }),
+
+                new Paragraph({ text: "" }),
+
+                // Rubric Scores Table
+                new Paragraph({
+                  heading: HeadingLevel.HEADING_2,
+                  children: [new TextRun({ text: "2. Rubric Criterion Score Matrix", bold: true, color: "16222F" })]
+                }),
+                new Table({
+                  width: { size: 100, type: WidthType.PERCENTAGE },
+                  rows: [
+                    new TableRow({
+                      children: [
+                        new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Evaluation Criteria", bold: true })] })] }),
+                        new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Score (Max 4.0)", bold: true })] })] }),
+                        new TableCell({ children: [new Paragraph({ children: [new TextRun({ text: "Performance Classification", bold: true })] })] })
+                      ]
+                    }),
+                    new TableRow({
+                      children: [
+                        new TableCell({ children: [new Paragraph({ text: "1. RQ & Hypothesis Formulation" })] }),
+                        new TableCell({ children: [new Paragraph({ text: `${currentEvaluationReport.criteria.rq.score} / 4.0` })] }),
+                        new TableCell({ children: [new Paragraph({ text: currentEvaluationReport.criteria.rq.score >= 3.5 ? "Excellent (Band 4)" : currentEvaluationReport.criteria.rq.score >= 2.5 ? "Good (Band 3)" : "Developing (Band 2)" })] })
+                      ]
+                    }),
+                    new TableRow({
+                      children: [
+                        new TableCell({ children: [new Paragraph({ text: "2. Evidence Integration (Pinkfong Facts)" })] }),
+                        new TableCell({ children: [new Paragraph({ text: `${currentEvaluationReport.criteria.evidence.score} / 4.0` })] }),
+                        new TableCell({ children: [new Paragraph({ text: currentEvaluationReport.criteria.evidence.score >= 3.5 ? "Excellent (Band 4)" : currentEvaluationReport.criteria.evidence.score >= 2.5 ? "Good (Band 3)" : "Developing (Band 2)" })] })
+                      ]
+                    }),
+                    new TableRow({
+                      children: [
+                        new TableCell({ children: [new Paragraph({ text: "3. Logical Justification & Reasoning" })] }),
+                        new TableCell({ children: [new Paragraph({ text: `${currentEvaluationReport.criteria.justification.score} / 4.0` })] }),
+                        new TableCell({ children: [new Paragraph({ text: currentEvaluationReport.criteria.justification.score >= 3.5 ? "Excellent (Band 4)" : currentEvaluationReport.criteria.justification.score >= 2.5 ? "Good (Band 3)" : "Developing (Band 2)" })] })
+                      ]
+                    }),
+                    new TableRow({
+                      children: [
+                        new TableCell({ children: [new Paragraph({ text: "4. IELTS Structure & Word Limit" })] }),
+                        new TableCell({ children: [new Paragraph({ text: `${currentEvaluationReport.criteria.structure.score} / 4.0` })] }),
+                        new TableCell({ children: [new Paragraph({ text: currentEvaluationReport.criteria.structure.score >= 3.5 ? "Excellent (Band 4)" : currentEvaluationReport.criteria.structure.score >= 2.5 ? "Good (Band 3)" : "Developing (Band 2)" })] })
+                      ]
+                    })
+                  ]
+                }),
+
+                new Paragraph({ text: "" }),
+
+                // Section-by-Section Strengths and Weaknesses
+                new Paragraph({
+                  heading: HeadingLevel.HEADING_2,
+                  children: [new TextRun({ text: "3. Section-by-Section Itemized Diagnostic Analysis", bold: true, color: "16222F" })]
+                }),
+
+                // Step 1 Notes
+                new Paragraph({ children: [new TextRun({ text: "• Step 1: Introduction (Research Questions & Hypotheses)", bold: true })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Strengths: ${currentEvaluationReport.criteria.rq.strengths.join("; ") || "Introduction attempted."}` })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Weaknesses: ${currentEvaluationReport.criteria.rq.weaknesses.join("; ") || "None identified."}` })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Improvement Plan: ${currentEvaluationReport.criteria.rq.improvements.join("; ") || "Maintain clear testable hypothesis formulation."}`, italics: true })] }),
+
+                // Step 2 Notes
+                new Paragraph({ children: [new TextRun({ text: "• Step 2: Findings (Narrative Evidence & Story Facts)", bold: true })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Strengths: ${currentEvaluationReport.criteria.evidence.strengths.join("; ") || "Narrative elements referenced."}` })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Weaknesses: ${currentEvaluationReport.criteria.evidence.weaknesses.join("; ") || "None identified."}` })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Improvement Plan: ${currentEvaluationReport.criteria.evidence.improvements.join("; ") || "Continue integrating exact quantitative facts."}`, italics: true })] }),
+
+                // Step 3 Notes
+                new Paragraph({ children: [new TextRun({ text: "• Step 3: Justification & Moral Reasoning", bold: true })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Strengths: ${currentEvaluationReport.criteria.justification.strengths.join("; ") || "Moral connection explored."}` })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Weaknesses: ${currentEvaluationReport.criteria.justification.weaknesses.join("; ") || "None identified."}` })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Improvement Plan: ${currentEvaluationReport.criteria.justification.improvements.join("; ") || "Strengthen logical bridges between bad-faith arguments and community loss."}`, italics: true })] }),
+
+                // Step 4 Notes
+                new Paragraph({ children: [new TextRun({ text: "• Step 4: Conclusion & Universal Rule", bold: true })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Strengths: ${currentEvaluationReport.criteria.structure.strengths.join("; ") || "Conclusive summary drafted."}` })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Weaknesses: ${currentEvaluationReport.criteria.structure.weaknesses.join("; ") || "None identified."}` })] }),
+                new Paragraph({ children: [new TextRun({ text: `  - Improvement Plan: ${currentEvaluationReport.criteria.structure.improvements.join("; ") || "Refine punchy 30-word moral takeaway."}`, italics: true })] }),
+
+                new Paragraph({ text: "" }),
+
+                // Submitted Script Transcript
+                new Paragraph({
+                  heading: HeadingLevel.HEADING_2,
+                  children: [new TextRun({ text: "4. Candidate's Submitted Response Script", bold: true, color: "16222F" })]
+                }),
+                new Paragraph({
+                  children: [new TextRun({ text: submittedEssay, italics: true, color: "333333" })]
+                }),
+
+                new Paragraph({ text: "" }),
+
+                // Examiner Signature
+                new Paragraph({
+                  text: "Lead IELTS Senior Examiner Signature: _______________________      Date Certified: " + examDate,
+                  run: { bold: true, size: 20 }
+                })
+              ]
+            }]
+          });
+
+          const blob = await Packer.toBlob(doc);
+          saveAs(blob, filename);
+          return;
+        } catch (err) {
+          console.warn("Native docx.js pack failed, switching to formatted Office HTML-Doc export:", err);
+        }
+      }
+
+      generateOfficeWordDocFallback(filename, candidateName, candidateNum, centreNum, examDate, submittedEssay);
+    }
+
+    function generateOfficeWordDocFallback(filename, name, num, centre, date, essay) {
+      const rep = currentEvaluationReport;
+      const htmlContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <meta charset='utf-8'>
+          <title>IELTS Task 2 Examiner Report</title>
+          <style>
+            body { font-family: 'Times New Roman', serif; font-size: 12pt; color: #1a1a1a; line-height: 1.5; }
+            h1 { font-size: 16pt; color: #16222f; text-align: center; margin-bottom: 2pt; }
+            h2 { font-size: 13pt; color: #8b0000; text-align: center; margin-top: 0; }
+            h3 { font-size: 12pt; color: #16222f; border-bottom: 1.5pt solid #16222f; padding-bottom: 2pt; margin-top: 14pt; }
+            table { width: 100%; border-collapse: collapse; margin: 10pt 0; font-family: 'Times New Roman', serif; font-size: 11pt; }
+            th, td { border: 1pt solid #777777; padding: 6pt; text-align: left; }
+            th { background-color: #f1efe9; font-weight: bold; }
+            .badge { font-weight: bold; color: #8b0000; }
+            .script-box { background: #fafafa; border: 1pt solid #cccccc; padding: 10pt; font-style: italic; white-space: pre-wrap; }
+          </style>
+        </head>
+        <body>
+          <h2>INTERNATIONAL ENGLISH LANGUAGE TESTING SYSTEM</h2>
+          <h1>OFFICIAL EXAMINER GRADING & DIAGNOSTIC REPORT</h1>
+          <p style="text-align:center; font-style:italic; font-size: 10pt; color: #555;">Grade 8 English Language Arts: IELTS Task 2 Analytical Writing</p>
+          <hr/>
+
+          <h3>1. Candidate & Test Administration Profile</h3>
+          <table>
+            <tr>
+              <td><strong>Candidate Full Name:</strong></td>
+              <td>${name}</td>
+              <td><strong>Candidate Number:</strong></td>
+              <td>${num}</td>
+            </tr>
+            <tr>
+              <td><strong>Centre Number:</strong></td>
+              <td>${centre}</td>
+              <td><strong>Date of Examination:</strong></td>
+              <td>${date}</td>
+            </tr>
+            <tr>
+              <td><strong>Essay Topic:</strong></td>
+              <td colspan="3">The Pied Piper of Hamelin: Breach of Contract, Evidence, and Moral Justification</td>
+            </tr>
+          </table>
+
+          <h3>2. Evaluated Analytical Band & Quantitative Summary</h3>
+          <p>
+            <strong>Overall Analytical Grade:</strong> <span class="badge">Band ${rep.roundedBand} / 4.0</span><br/>
+            <strong>Official IELTS Equivalent:</strong> <strong>${rep.ieltsBand}</strong><br/>
+            <strong>Benchmark Model Concordance:</strong> <strong>${rep.benchmarkScore}% alignment with ground-truth reference</strong><br/>
+            <strong>Word Count Status:</strong> ${rep.words} Words (Target: Exactly 250 Words ±10% [225–275 words]).
+          </p>
+
+          <h3>3. Criterion Performance Matrix</h3>
+          <table>
+            <tr>
+              <th>Evaluation Dimension</th>
+              <th>Achieved Score</th>
+              <th>Proficiency Classification</th>
+            </tr>
+            <tr>
+              <td>1. RQ & Hypothesis Formulation</td>
+              <td>${rep.criteria.rq.score} / 4.0</td>
+              <td>${rep.criteria.rq.score >= 3.5 ? "Excellent (Band 4)" : "Competent (Band 3)"}</td>
+            </tr>
+            <tr>
+              <td>2. Narrative Evidence Integration</td>
+              <td>${rep.criteria.evidence.score} / 4.0</td>
+              <td>${rep.criteria.evidence.score >= 3.5 ? "Excellent (Band 4)" : "Competent (Band 3)"}</td>
+            </tr>
+            <tr>
+              <td>3. Logical Justification & Reasoning</td>
+              <td>${rep.criteria.justification.score} / 4.0</td>
+              <td>${rep.criteria.justification.score >= 3.5 ? "Excellent (Band 4)" : "Competent (Band 3)"}</td>
+            </tr>
+            <tr>
+              <td>4. IELTS Structure & Word Limit</td>
+              <td>${rep.criteria.structure.score} / 4.0</td>
+              <td>${rep.criteria.structure.score >= 3.5 ? "Excellent (Band 4)" : "Competent (Band 3)"}</td>
+            </tr>
+          </table>
+
+          <h3>4. Section-by-Section Strengths, Weaknesses, and Areas for Improvement</h3>
+
+          <p><strong>Step 1: Introduction (Research Question & Hypothesis)</strong><br/>
+          • <strong>Strengths:</strong> ${rep.criteria.rq.strengths.join("; ") || "Formulated initial inquiry."}<br/>
+          • <strong>Weaknesses:</strong> ${rep.criteria.rq.weaknesses.join("; ") || "None flagged."}<br/>
+          • <strong>Areas for Improvement:</strong> ${rep.criteria.rq.improvements.join("; ") || "Maintain rigorous hypothesis formulation."}</p>
+
+          <p><strong>Step 2: Findings (Objective Story Evidence)</strong><br/>
+          • <strong>Strengths:</strong> ${rep.criteria.evidence.strengths.join("; ") || "Integrated narrative milestones."}<br/>
+          • <strong>Weaknesses:</strong> ${rep.criteria.evidence.weaknesses.join("; ") || "None flagged."}<br/>
+          • <strong>Areas for Improvement:</strong> ${rep.criteria.evidence.improvements.join("; ") || "Specify numeric and contextual contract details."}</p>
+
+          <p><strong>Step 3: Justification (Empirical Proof & Cause/Effect)</strong><br/>
+          • <strong>Strengths:</strong> ${rep.criteria.justification.strengths.join("; ") || "Connected facts to thesis."}<br/>
+          • <strong>Weaknesses:</strong> ${rep.criteria.justification.weaknesses.join("; ") || "None flagged."}<br/>
+          • <strong>Areas for Improvement:</strong> ${rep.criteria.justification.improvements.join("; ") || "Deepen analysis of the Town Chief's flawed logic."}</p>
+
+          <p><strong>Step 4: Conclusion (Moral Synthesis)</strong><br/>
+          • <strong>Strengths:</strong> ${rep.criteria.structure.strengths.join("; ") || "Concluded argument."}<br/>
+          • <strong>Weaknesses:</strong> ${rep.criteria.structure.weaknesses.join("; ") || "None flagged."}<br/>
+          • <strong>Areas for Improvement:</strong> ${rep.criteria.structure.improvements.join("; ") || "Deliver punchy 30-word moral verdict."}</p>
+
+          <h3>5. Candidate Submitted Response Transcript</h3>
+          <div class="script-box">${essay}</div>
+
+          <br/><br/>
+          <p><strong>Examiner Certification:</strong> _____________________________ &nbsp;&nbsp;&nbsp;&nbsp; <strong>Date:</strong> ${date}</p>
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff', htmlContent], {
+        type: 'application/msword'
+      });
+      saveAs(blob, filename);
+    }
+  </script>
+</body>
+</html>
